@@ -1,0 +1,40 @@
+#####################
+# Date : 2013.03.20 #
+# Name : naleejang  #
+#####################
+# Devstack localrc for quantum multi node on controller node
+
+# default
+HOST_IP=192.168.42.101
+MULTI_HOST=True
+
+# network
+FLAT_INTERFACE=eth1
+FIXED_RANGE=10.0.0.0/20
+NETWORK_GATEWAY=10.0.0.1
+FLOATING_RANGE=192.168.0.1/24
+EXT_GW_IP=192.168.0.1
+ 
+# vnc
+VNCSERVER_LISTEN=0.0.0.0
+VNCSERVER_PROXYCLIENT_ADDRESS=$HOST_IP
+ 
+# logs
+DEST=/opt/stack
+LOGFILE=$DEST/logs/stack.sh.log
+SCREEN_LOGDIR=$DEST/logs/screen
+ 
+# system password
+ADMIN_PASSWORD=openstack
+MYSQL_PASSWORD=openstack
+RABBIT_PASSWORD=openstack
+SERVICE_PASSWORD=openstack
+SERVICE_TOKEN=openstackservicetoken
+ 
+# cinder
+VOLUME_GROUP="cinder-volume"
+VOLUME_NAME_PREFIX="volume-"
+ 
+# install service
+disable_service n-net
+enable_service q-svc q-agt q-dhcp q-l3 q-meta quantum
